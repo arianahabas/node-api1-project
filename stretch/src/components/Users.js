@@ -9,10 +9,10 @@ const Users = (props) => {
     return (
         <div>
             <h2>User List</h2>
-            {users.map((user)=> {
+            {users.map((person)=> {
                 return (
                     
-                    <UserCard key={users.id} user={user}/>
+                    <UserCard key={users.id} person={person}/>
                  
                 )
             })
