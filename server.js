@@ -2,12 +2,15 @@
 
 const express = require('express'); // import the express package
 const db = require('./database')
+const shortid = require('shortid');
+const cors = require('cors')
+
 
 const server = express(); // creates the server
-const shortid = require('shortid');
+
 
 server.use(express.json())
-
+server.use(cors())
 
 // handle requests to the root of the api, the / route
 server.get('/', (req, res) => {
