@@ -12,13 +12,13 @@ const Container = styled.div`
 `
 
 const UserCard = (props) => {
-    const {users} = props
+    const {user} = props
 
     return (
         <Container>
-            <span> Name: {users.name} </span>
+            <span> Name: {user.name} </span>
             <br/>
-            <span> Bio: {users.bio} </span>
+            <span> Bio: {user.bio} </span>
             <br/>
             <button>Edit</button>
         </Container>

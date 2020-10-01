@@ -33,9 +33,10 @@ function App() {
   
    const fetchUsers = () => {
     axios.get('http://localhost:5000/api/users')
+    // .then(res => res.json())
     .then(res => {
       setUsers(res.data)
-      console.log("check it out", res)
+      console.log("check it out", res.data)
     })
     .catch(err => {
       console.log("nope", err)
@@ -50,8 +51,10 @@ function App() {
   console.log(users)
 
   return (
+  
   <Container>
    <button onClick={onClick}>See users</button>
+
     <Users users={users}/>
   </Container>
     
