@@ -103,7 +103,7 @@ server.put('/api/users/:id', (req,res) =>{
             bio: req.body.bio,
         })
         res.status(200).json(updateUser)
-
+        //for some reason this is not working correctly
     } else if (!name || !bio ){
         res.status(400).json({
             message:"Please provide name and bio for the user."
