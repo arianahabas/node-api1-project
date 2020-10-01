@@ -20,6 +20,7 @@ const UserCard = (props) => {
     const {person} = props
     const [userToEdit, setUserToEdit] = useState(initialUser)
     const [editing, setEditing] = useState(false)
+    const [allUsers, setAllUsers] = useState([])
 
     const editTask = (t) => {
         setEditing(true)
@@ -57,6 +58,17 @@ const UserCard = (props) => {
         })
     }
 
+    const deleteUser = (e) => {
+        axios.delete(`http://localhost:5000/api/users/${person.id}`)
+        .then(res =>{
+            console.log('oh yeah', res)
+            setAllUsers(allUsers.filter((item) => item.id !== person.id))
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+
     return (
         <Container>
             <span> Name: {person.name} </span>
@@ -64,6 +76,7 @@ const UserCard = (props) => {
             <span> Bio: {person.bio} </span>
             <br/>
             <button onClick ={editTask}>Edit</button>
+            <button onClick={deleteUser}>Delete User</button>
 
             {editing && (
                 <form onSubmit={saveEdit}>
