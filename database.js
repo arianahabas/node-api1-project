@@ -1,7 +1,9 @@
+const shortid = require('shortid');
+
 let users = [
-	{ id: "1", name: "Jane Doe" },
-	{ id: "2", name: "John Doe" },
-	{ id: "3", name: "Jack Doe" },
+	{ id: shortid.generate(), name: "Jane Doe", bio: "mother" },
+	{ id: shortid.generate(), name: "John Doe", bio: "father"},
+	{ id: shortid.generate(), name: "Jack Doe", bio: "son"},
 ]
 
 function getUsers() {
