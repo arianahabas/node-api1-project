@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
-
+import 'react-responsive-modal/styles.css';
+import { Modal } from 'react-responsive-modal';
 
 
 const Container = styled.div`
@@ -11,16 +12,26 @@ const Container = styled.div`
   height: auto;
   padding: 10px;
 `
+const Form = styled.form`
+    padding: 20px;
+
+
+`
 const initialUser = {
     name: '',
     bio: '',
 }
+
+
 
 const UserCard = (props) => {
     const {person} = props
     const [userToEdit, setUserToEdit] = useState(initialUser)
     const [editing, setEditing] = useState(false)
     const [allUsers, setAllUsers] = useState([])
+    const [open, setOpen] = useState(false)
+
+
 
     const editTask = (t) => {
         setEditing(true)
@@ -75,11 +86,13 @@ const UserCard = (props) => {
             <br/>
             <span> Bio: {person.bio} </span>
             <br/>
-            <button onClick ={editTask}>Edit</button>
-            <button onClick={deleteUser}>Delete User</button>
-
-            {editing && (
-                <form onSubmit={saveEdit}>
+            <button onClick ={() => setOpen(true)}>Edit</button>
+            
+                <Modal open={open} onClose={() =>setOpen(false)} center>
+                <h4>Edit User Information</h4>
+                <Form onSubmit={saveEdit}>
+                    <p>
+                    <label htmlFor='name'>Name
                     <input 
                     type="text"
                     name='name'
@@ -87,7 +100,10 @@ const UserCard = (props) => {
                     onChange={handleChange}
                     placeholder='Full Name'
                     />
-                    <br/>
+                    </label>
+                    </p>
+                    <p>
+                    <label htmlFor='bio'>Bio
                      <input 
                     type="text"
                     name='bio'
@@ -95,10 +111,14 @@ const UserCard = (props) => {
                     onChange={handleChange}
                     placeholder='Bio'
                     />
+                    </label>
+                    </p>
                     <br/>
                     <button>Update</button>
-                </form>
-            )}
+                </Form>
+                </Modal>
+           
+            <button onClick={deleteUser}>Delete User</button>
         </Container>
     )
 }
