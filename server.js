@@ -14,7 +14,9 @@ server.use(cors())
 
 // handle requests to the root of the api, the / route
 server.get('/', (req, res) => {
-  res.json({message: "Hello from Express"});
+  res.json({message: `Hello from Express ${process.env.COHORT}`,
+            fact: process.env.FUN_FACT || 'I have no fun facts'
+        });
 });
 
 
@@ -120,7 +122,9 @@ server.put('/api/users/:id', (req,res) =>{
 })
 
 // watch for connections on port 5000
-server.listen(5000, () =>
+const port = process.env.PORT || 5000
+
+server.listen(port, () =>
   console.log('server started')
 );
 
